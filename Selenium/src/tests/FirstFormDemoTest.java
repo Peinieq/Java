@@ -29,10 +29,10 @@ public class FirstFormDemoTest {
 		rbp = new FirstFormObjects(wb);
 		mo.openViaUrl(rbp.url);
 		rbp.initElements(wb);
-		rbp.enterMessageEnter("Witaj Karol");
+		rbp.enterMessageEnter("Witaj");
 		mo.buttonClick(rbp.showMessageClick());
 		
-		Assert.assertEquals("Witaj Karol", rbp.getMessageAfterClicked().getText());
+		Assert.assertEquals("Witaj", rbp.getMessageAfterClicked().getText());
 	}
 	@Test
 	public void enterAandBadding() throws Exception{
