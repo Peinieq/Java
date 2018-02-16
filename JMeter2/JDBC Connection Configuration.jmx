@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="3.2" jmeter="3.3 r1808647">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Plan testów" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Zmienne zdefiniowane przez użytkownika" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="false">
+        <stringProp name="ConstantTimer.delay">500000</stringProp>
+      </ConstantTimer>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Project Database" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">5</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">120</stringProp>
+        <longProp name="ThreadGroup.start_time">1517318910000</longProp>
+        <longProp name="ThreadGroup.end_time">1517405373000</longProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">0</stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Recording Controller" enabled="true"/>
+        <hashTree>
+          <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="JDBC Connection Configuration" enabled="true">
+            <boolProp name="autocommit">true</boolProp>
+            <stringProp name="checkQuery">select 1 from dual</stringProp>
+            <stringProp name="connectionAge">5000</stringProp>
+            <stringProp name="dataSource">test</stringProp>
+            <stringProp name="dbUrl">jdbc:mysql://sql2.freemysqlhosting.net:3306/sql2217586</stringProp>
+            <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+            <boolProp name="keepAlive">true</boolProp>
+            <stringProp name="password">pI4!qN9%</stringProp>
+            <stringProp name="poolMax">1</stringProp>
+            <stringProp name="timeout">5000</stringProp>
+            <stringProp name="transactionIsolation">DEFAULT</stringProp>
+            <stringProp name="trimInterval">6000</stringProp>
+            <stringProp name="username">sql2217586</stringProp>
+          </JDBCDataSource>
+          <hashTree/>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Konfiguracja plików CSV" enabled="true">
+            <stringProp name="delimiter">,</stringProp>
+            <stringProp name="fileEncoding">UTF-8</stringProp>
+            <stringProp name="filename">C:\Users\Erazer\Desktop\Testowanie Oprogramowania\Produkt końcowy projektu jMeter2\Pobierane Dane.csv</stringProp>
+            <boolProp name="ignoreFirstLine">false</boolProp>
+            <boolProp name="quotedData">false</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <stringProp name="shareMode">shareMode.all</stringProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="variableNames">firstname</stringProp>
+          </CSVDataSet>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+            <stringProp name="BeanShellSampler.query">import org.apache.jmeter.services.FileServer;
+
+tempDefault = &quot;0&quot;;
+
+f = new FileOutputStream(&quot;C:\\Users\\Erazer\\Desktop\\Testowanie Oprogramowania\\Produkt końcowy projektu jMeter2\\db_performance_Alert.txt&quot;, false);
+p = new PrintStream(f); 
+
+p.println( tempDefault );      
+
+p.close();f.close();</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Check DB Status" enabled="true">
+            <stringProp name="dataSource">test</stringProp>
+            <stringProp name="query">select SecondName from Persons where FirstName = &apos;Hupo&apos;;</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="queryType">Select Statement</stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+            <stringProp name="resultVariable">Result</stringProp>
+            <stringProp name="variableNames">SecondName</stringProp>
+          </JDBCSampler>
+          <hashTree>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Post-procesor BeanShell" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="script">import org.apache.jmeter.services.FileServer;
+import org.apache.jmeter.samplers.SampleResult;
+
+tempVarWork = &quot;1&quot;;
+
+long responseTime = prev.getTime();
+
+if (responseTime &lt; 60) {
+	f = new FileOutputStream(&quot;C:\\Users\\Erazer\\Desktop\\Testowanie Oprogramowania\\Produkt końcowy projektu jMeter2\\db_performance_Alert.txt&quot;, false);
+	p = new PrintStream(f); 
+     p.println( tempVarWork );     
+     p.close();f.close(); 
+}
+</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="DB_STATUS" enabled="true">
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script">import org.apache.jmeter.services.FileServer;
+ArrayList Result = vars.getObject(&quot;Result&quot;);
+tempVar = &quot;DB_UP_AND_RUNNING&quot;;
+name = &quot;Tomek&quot;;
+
+//f = new FileOutputStream(&quot;C:\\Users\\Erazer\\Desktop\\T.O.16.12.2017 Karola\\Pliki wynikowe\\WPdigit.txt&quot;, false);
+f = new FileOutputStream(&quot;C:\\Users\\Erazer\\Desktop\\Testowanie Oprogramowania\\Produkt końcowy projektu jMeter2\\DB_S.txt&quot;, false);
+p = new PrintStream(f); 
+
+for(HashMap row : Result){
+	Iterator it = row.entrySet().iterator();
+	while(it.hasNext()){
+		Map.Entry pair = (Map.Entry)it.next();
+		if (pair.getValue().equals(name)) {
+			p.println( tempVar );
+			log.info(pair.getValue());
+			break;
+			}else{
+			p.println( &quot;DB_FAIL&quot; );
+			log.info(&quot;Nie &quot; + pair.getValue());
+			break;
+			}
+			
+	}
+}
+
+p.close();f.close();</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Insert into DB from CSV" enabled="true">
+            <stringProp name="dataSource">test</stringProp>
+            <stringProp name="query">update Persons
+set FirstName=&quot;Kolodziej&quot;
+where SecondName=&quot;${firstname}&quot;;</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="queryType">Prepared Update Statement</stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+            <stringProp name="resultVariable">ResultUpdate</stringProp>
+            <stringProp name="variableNames">SecondName</stringProp>
+          </JDBCSampler>
+          <hashTree>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Post-procesor BeanShell" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="script">import org.apache.jmeter.services.FileServer;
+import org.apache.jmeter.samplers.SampleResult;
+
+tempVarWork = &quot;1&quot;;
+
+long responseTime = prev.getTime(); 
+
+if (responseTime &lt; 60) {
+	f = new FileOutputStream(&quot;C:\\Users\\Erazer\\Desktop\\Testowanie Oprogramowania\\Produkt końcowy projektu jMeter2\\db_performance_Alert.txt&quot;, false);
+	p = new PrintStream(f);
+     p.println( tempVarWork );  
+     p.close();f.close();    
+}</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Select into DB from CSV" enabled="true">
+            <stringProp name="dataSource">test</stringProp>
+            <stringProp name="query">select Street from Persons where SecondName=&quot;${firstname}&quot;;</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="queryType">Select Statement</stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+            <stringProp name="resultVariable">ResultUpdate</stringProp>
+            <stringProp name="variableNames">SecondName</stringProp>
+          </JDBCSampler>
+          <hashTree>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="Post-procesor BeanShell" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="script">import org.apache.jmeter.services.FileServer;
+import org.apache.jmeter.samplers.SampleResult;
+
+tempVarWork = &quot;1&quot;;
+
+long responseTime = prev.getTime();
+
+if (responseTime &lt; 60) {
+	f = new FileOutputStream(&quot;C:\\Users\\Erazer\\Desktop\\Testowanie Oprogramowania\\Produkt końcowy projektu jMeter2\\db_performance_Alert.txt&quot;, false);
+	p = new PrintStream(f); 
+     p.println( tempVarWork );   
+     p.close();f.close();   
+}</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Test Action" enabled="true">
+            <intProp name="ActionProcessor.action">1</intProp>
+            <intProp name="ActionProcessor.target">0</intProp>
+            <stringProp name="ActionProcessor.duration">1200</stringProp>
+          </TestAction>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+    <WorkBench guiclass="WorkBenchGui" testclass="WorkBench" testname="Brudnopis" enabled="true">
+      <boolProp name="WorkBench.save">true</boolProp>
+    </WorkBench>
+    <hashTree/>
+  </hashTree>
+</jmeterTestPlan>
