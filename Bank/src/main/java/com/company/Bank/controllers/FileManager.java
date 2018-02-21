@@ -38,6 +38,8 @@ public class FileManager {
             printWriter.close();
         } catch (IOException ex) {
             throw ex;
+        } catch (Exception ex) {
+            throw ex;   
         }
     }
 
@@ -53,6 +55,8 @@ public class FileManager {
             bufferedReader.close();
         } catch (IOException ex) {
             throw ex;
+        } catch (Exception ex) {
+            throw ex;   
         }
         return content;
     }
