@@ -53,11 +53,12 @@ public class FileManager {
             while ((line = bufferedReader.readLine()) != null) {
                 content.add(line);
             }
-            bufferedReader.close();
         } catch (IOException ex) {
             throw ex;
         } catch (Exception ex) {
             throw ex;   
+        } finally {
+            bufferedReader.close();
         }
         return content;
     }
