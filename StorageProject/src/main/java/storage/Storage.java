@@ -31,7 +31,7 @@ public class Storage {
 
     private void initializePackages() {
         packages = new ArrayList[X][Z];
-        for (int posX = 0; posX < X; ++posX) {
+        for (int posX = 0; posX < X; posX++) {
             initializeColumnZ(posX);
         }
     }
@@ -65,9 +65,10 @@ public class Storage {
     public Package getPackageByNumber(String packageNumber) {
         int aimPosX = idPositionMap.get(packageNumber).getPosX();
         int aimPosZ = idPositionMap.get(packageNumber).getPosZ();
-        Package resultPackage = packages[aimPosX][aimPosZ].get(packages[aimPosX][aimPosZ].size() - 1);
+        ArrayList<Package> currentColumn = packages[aimPosX][aimPosZ];
+        Package resultPackage = currentColumn.get(currentColumn.size() - 1);
         prepareStorageToGetProperPackage(resultPackage, packageNumber, aimPosX, aimPosZ);
-        packages[aimPosX][aimPosZ].remove(packages[aimPosX][aimPosZ].size() - 1);
+        currentColumn.remove(currentColumn.size() - 1);
         StorageFulfilmentAnalyzer.decrementNumberOfPackages();
         return resultPackage;
     }
