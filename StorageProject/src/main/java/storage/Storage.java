@@ -112,7 +112,7 @@ public class Storage {
 
     private boolean isLocationOfPackageChangedInColumnZ(int posX, Package currentPackage, int notPosX, int notPoZ) {
         for (int posZ = 0; posZ < Z; posZ++) {
-            if((currentPackage.getPosition().getPosX() != posX || currentPackage.getPosition().getPosZ() != posZ)
+            if ((currentPackage.getPosition().getPosX() != posX || currentPackage.getPosition().getPosZ() != posZ)
                     && (posX != notPosX || posZ != notPoZ) ) {
                 Position newPosition = new Position(posX, packages[posX][posZ].size() - 1, posZ);
                 return isPackageInserted(packages[posX][posZ], currentPackage, newPosition);
@@ -156,7 +156,7 @@ public class Storage {
 
     public String getStateOfStorage() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int posX = 0; posX < X; ++posX) {
+        for (int posX = 0; posX < X; posX++) {
             stringBuilder.append(getStateOfSingleRow(posX));
         }
         return stringBuilder.toString();
@@ -164,10 +164,10 @@ public class Storage {
 
     private String getStateOfSingleRow(int posX) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int posZ = 0; posZ < Z; ++posZ) {
+        for (int posZ = 0; posZ < Z; posZ++) {
             stringBuilder.append((packages[posX][posZ] + "\n").replaceAll("\\[", "").replaceAll("\\]",""));
         }
-        stringBuilder.append("\n");
+        stringBuilder.append('\n');
         return stringBuilder.toString();
     }
 
