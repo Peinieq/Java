@@ -36,6 +36,8 @@ public class BankService {
             bankProvider.loadUsers();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();   
         }
     }
 
@@ -80,6 +82,8 @@ public class BankService {
         } catch (RuntimeException ex) {
             logger.error("Sorry, something wrong on Runtime: ", ex);
             System.exit(-1);
+        } catch (Exceptions ex) {
+            logger.error("Sorry, something wrong: ", ex);   
         }
         return true;
     }
@@ -171,6 +175,8 @@ public class BankService {
             logger.error("Sorry, something wrong on IN-OUT : ", ex);
         } catch (RuntimeException ex) {
             logger.error("Sorry, something wrong on Runtime: ", ex);
+        } catch (Exceptions ex) {
+            logger.error("Sorry, something wrong: ", ex);   
         }
     }
 
@@ -199,6 +205,8 @@ public class BankService {
             logger.error("Sorry, something wrong on IN-OUT : ", ex);
         } catch (RuntimeException ex) {
             logger.error("Sorry, something wrong on Runtime: ", ex);
+        } catch (Exceptions ex) {
+            logger.error("Sorry, something wrong: ", ex);   
         }
     }
 
@@ -236,6 +244,8 @@ public class BankService {
             logger.error("Sorry, something wrong on IN-OUT : ", ex);
         } catch (RuntimeException ex) {
             logger.error("Sorry, something wrong on Runtime: ", ex);
+        } catch (Exceptions ex) {
+            logger.error("Sorry, something wrong: ", ex);   
         }
     }
 
@@ -265,6 +275,8 @@ public class BankService {
             logger.error("Sorry, something wrong on IN-OUT : ", ex);
         } catch (RuntimeException ex) {
             logger.error("Sorry, something wrong on Runtime: ", ex);
+        } catch (Exceptions ex) {
+            logger.error("Sorry, something wrong: ", ex);   
         }
     }
 
@@ -312,6 +324,8 @@ public class BankService {
             logger.error("Sorry, something wrong on IN-OUT : ", ex);
         } catch (RuntimeException ex) {
             logger.error("Sorry, something wrong on Runtime: ", ex);
+        } catch (Exceptions ex) {
+            logger.error("Sorry, something wrong: ", ex);   
         }
     }
 
@@ -333,6 +347,8 @@ public class BankService {
             logger.error("Sorry, something wrong on IN-OUT : ", ex);
         } catch (RuntimeException ex) {
             logger.error("Sorry, something wrong on Runtime: ", ex);
+        } catch (Exception ex) {
+            logger.error("Sorry, something wrong: ", ex);   
         }
     }
 
@@ -355,6 +371,8 @@ public class BankService {
             logger.error("Sorry, something wrong on IN-OUT : ", ex);
         } catch (RuntimeException ex) {
             logger.error("Sorry, something wrong on Runtime: ", ex);
+        } catch (Exceptions ex) {
+            logger.error("Sorry, something wrong: ", ex);
         }
     }
 
@@ -384,6 +402,8 @@ public class BankService {
             logger.error("Sorry, something wrong on IN-OUT : ", ex);
         } catch (RuntimeException ex) {
             logger.error("Sorry, something wrong on Runtime: ", ex);
+        } catch (Exceptions ex) {
+            logger.error("Sorry, something wrong: ", ex);
         }
     }
 
@@ -397,6 +417,8 @@ public class BankService {
             logger.error("Sorry, something wrong on IN-OUT : ", ex);
         } catch (RuntimeException ex) {
             logger.error("Sorry, something wrong on Runtime: ", ex);
+        } catch (Exceptions ex) {
+            logger.error("Sorry, something wrong: ", ex);
         }
     }
 }
