@@ -34,12 +34,13 @@ public class FileManager {
         try {
             FileWriter writer = new FileWriter(path, true);
             PrintWriter printWriter = new PrintWriter(writer);
-            printWriter.write(contents + "\r\n");
-            printWriter.close();
+            printWriter.write(contents + "\r\n");            
         } catch (IOException ex) {
             throw ex;
         } catch (Exception ex) {
             throw ex;   
+        } finally {
+            printWriter.close();
         }
     }
 
