@@ -37,7 +37,7 @@ public class Storage {
     }
 
     private void initializeColumnZ(int posX) {
-        for (int posZ = 0; posZ < Z; ++posZ) {
+        for (int posZ = 0; posZ < Z; posZ++) {
             packages[posX][posZ] = new ArrayList<Package>(Y);
         }
     }
@@ -75,7 +75,7 @@ public class Storage {
     private void prepareStorageToGetProperPackage(Package resultPackage, String packageNumber, int aimPosX, int aimPosZ) {
         int currentIndex = packages[aimPosX][aimPosZ].size() - 1;
         while (!resultPackage.getId().equals(packageNumber)) {
-            if(canChangeLocationOfActualPackage(resultPackage, aimPosX, aimPosZ)) {
+            if (canChangeLocationOfActualPackage(resultPackage, aimPosX, aimPosZ)) {
                 packages[aimPosX][aimPosZ].remove(resultPackage);
                 currentIndex--;
                 resultPackage = packages[aimPosX][aimPosZ].get(currentIndex);
@@ -86,14 +86,14 @@ public class Storage {
     }
 
     private void popAndAddPackagesToOtherColumns(int aimPosX, int aimPosZ) {
-        for (int posX = 0; posX < X; ++posX) {
+        for (int posX = 0; posX < X; posX++) {
             isPackedInsertedToColumnZ(posX, aimPosX, aimPosZ);
         }
     }
 
     private void isPackedInsertedToColumnZ(int posX, int aimPosX, int aimPosZ) {
         ArrayList<Package> currentColumn;
-        for (int posZ = 0; posZ < Z; ++posZ) {
+        for (int posZ = 0; posZ < Z; posZ++) {
             currentColumn = packages[posX][posZ];
             if (posX != aimPosX && posZ != aimPosZ
                     && canChangeLocationOfActualPackage(currentColumn.get(currentColumn.size() - 1), aimPosX, aimPosZ)) {
@@ -122,10 +122,10 @@ public class Storage {
     }
 
     private boolean isPackageInserted(ArrayList<Package> currentColumn, Package currentPackage, Position newPosition) {
-        if(currentColumn.isEmpty()) {
+        if (currentColumn.isEmpty()) {
             addPackageToNewColumn(currentColumn, currentPackage, newPosition);
             return true;
-        } else if(currentColumn.size() < Y) {
+        } else if (currentColumn.size() < Y) {
             if(currentColumn.get(currentColumn.size() - 1).compareTo(currentPackage) < 1) {
                 addPackageToNewColumn(currentColumn, currentPackage, newPosition);
                 return true;
@@ -147,7 +147,7 @@ public class Storage {
         for (HashMap.Entry<String, Position> entry : idPositionMap.entrySet()) {
             position = entry.getValue();
             pack = packages[position.getPosX()][position.getPosZ()].get(position.getPosY());
-            if(pack != null && type == pack.getType()) {
+            if (pack != null && type == pack.getType()) {
                 resultList.add(pack);
             }
         }
