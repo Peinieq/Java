@@ -1,7 +1,7 @@
 package tools;
 
-public final class  StorageFulfilmentAnalyzer {
-    private static final int MAX_FULFILMENT = 60;
+public class  StorageFulfilmentAnalyzer {
+    private static final double MAX_FULFILMENT = 60;
 
     private static long STORAGE_CAPACITY = 0;
     private static long numberOfPackages = 0;

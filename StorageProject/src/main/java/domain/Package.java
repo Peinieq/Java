@@ -4,7 +4,6 @@ import enums.TypeOfPackage;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 public class Package implements Comparable<Package>{
@@ -31,6 +30,7 @@ public class Package implements Comparable<Package>{
         this.priority = priority;
         this.type = type;
         addedDate = new Date();
+        position = new Position();
         historyOfMoves = new ArrayList<Position>();
     }
 
@@ -50,16 +50,8 @@ public class Package implements Comparable<Package>{
         return priority;
     }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
     public TypeOfPackage getType() {
         return type;
-    }
-
-    public void setType(TypeOfPackage type) {
-        this.type = type;
     }
 
     public String getDescription() {
@@ -91,6 +83,7 @@ public class Package implements Comparable<Package>{
     }
 
     public void setPosition(Position position) {
+        historyOfMoves.add(position);
         this.position = position;
     }
 
@@ -104,6 +97,10 @@ public class Package implements Comparable<Package>{
 
     public void incrementCountOfMoves() {
         ++countOfMoves;
+    }
+
+    public void clearHistoryOfMoves() {
+        historyOfMoves.clear();
     }
 
     @Override
@@ -137,15 +134,15 @@ public class Package implements Comparable<Package>{
 
     @Override
     public String toString() {
-        return "Package{" +
+        return "Package: " +
                 "id='" + id + '\'' +
                 ", priority=" + priority +
-                ", type=" + type +
-                ", description='" + description + '\'' +
-                ", addedDate=" + addedDate +
-                ", countOfMoves=" + countOfMoves +
-                ", position=" + position +
-                '}';
+//                ", type=" + type +
+//                ", description='" + description + '\'' +
+//                ", addedDate=" + addedDate +
+//                ", countOfMoves=" + countOfMoves +
+                ", position=" + position
+                ;
     }
 
     public int compareTo(Package aPackage) {

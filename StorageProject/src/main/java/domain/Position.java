@@ -5,6 +5,10 @@ public class Position {
     private int posY = 0;
     private int posZ = 0;
 
+    public Position() {
+
+    }
+
     public Position(int posX, int posY, int posZ) {
         this.posX = posX;
         this.posY = posY;
@@ -57,10 +61,10 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Position{" +
+        return "[ " +
                 "posX=" + posX +
                 ", posY=" + posY +
                 ", posZ=" + posZ +
-                '}';
+                " ]";
     }
 }
