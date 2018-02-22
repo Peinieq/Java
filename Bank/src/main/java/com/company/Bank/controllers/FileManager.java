@@ -31,9 +31,10 @@ public class FileManager {
     }
 
     public void saveToFile(String path, String contents) throws IOException, RuntimeException {
+        PrintWriter printWriter;
         try {
             FileWriter writer = new FileWriter(path, true);
-            PrintWriter printWriter = new PrintWriter(writer);
+            printWriter = new PrintWriter(writer);
             printWriter.write(contents + "\r\n");            
         } catch (IOException ex) {
             throw ex;
@@ -46,9 +47,10 @@ public class FileManager {
 
     public List<String> readFromFile(String path) throws IOException, RuntimeException {
         List<String> content = new ArrayList<>();
+        BufferedReader bufferedReader;
         try {
             FileReader reader = new FileReader(path);
-            BufferedReader bufferedReader = new BufferedReader(reader);
+            bufferedReader = new BufferedReader(reader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 content.add(line);
