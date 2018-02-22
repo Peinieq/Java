@@ -42,9 +42,10 @@ public class BankProvider {
     }
 
     public void loadAccounts() throws IOException, RuntimeException {
+        BankAccount account;
         if (FileManager.getInstance().isFileExist("Accounts.txt")) {
             for (String content : FileManager.getInstance().readFromFile("Accounts.txt")) {
-                BankAccount account = new BankAccount();
+                account = new BankAccount();
                 account.load(content);
                 for (Person person : users) {
                     if (person.getPESEL().equals(account.getOwnerPESEL())) {
